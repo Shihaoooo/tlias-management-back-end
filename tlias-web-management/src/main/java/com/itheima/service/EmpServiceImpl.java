@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.mapper.EmpMapper;
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpQueryParam;
 import com.itheima.pojo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpMapper empMapper;
 
-    public PageResult<Emp> queryEmp(String name, Integer gender , LocalDate date , Integer currentPage , Integer pageSize) {
+    public PageResult<Emp> queryEmp(EmpQueryParam empQueryParam) {
         //1.设置分页参数
-        PageHelper.startPage(currentPage,pageSize);
+        PageHelper.startPage(empQueryParam.getCurrentPage(),empQueryParam.getPageSize());
         //2.执行查询,并解释查询结果(将List强转位Page对象，因为Page对象继承了ArrayList，可以实现强转)
-        Page<Emp> p = (Page<Emp>) empMapper.queryEmp(name,gender,date);
+        Page<Emp> p = (Page<Emp>) empMapper.queryEmp(empQueryParam);
 
         return new PageResult<Emp>(p.getResult(),p.getTotal());
     }
