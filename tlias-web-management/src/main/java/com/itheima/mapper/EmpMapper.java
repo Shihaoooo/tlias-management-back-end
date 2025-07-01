@@ -1,6 +1,7 @@
 package com.itheima.mapper;
 
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,7 +23,7 @@ public interface EmpMapper {
     // 条件分页（PageHelper）查询(使用XML映射)
     //@Select("select e.name as username,e.gender,e.image,e.job,e.date,d.name as deptname,e.update_time from emp e left join dept d on e.dept_id = d.id " +
     //        "where username like '%#{name}%' and gender = #{gender} and date >= #{date} order by e.update_time desc")
-    List<Emp> queryEmp(String name, Integer gender, LocalDate date);
+    List<Emp> queryEmp(EmpQueryParam empQueryParam);
 
 
     // 添加员工
