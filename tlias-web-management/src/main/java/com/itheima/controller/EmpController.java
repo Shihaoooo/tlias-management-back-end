@@ -1,6 +1,7 @@
 package com.itheima.controller;
 
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpQueryParam;
 import com.itheima.pojo.PageResult;
 import com.itheima.pojo.Result;
 import com.itheima.service.EmpService;
@@ -21,25 +22,43 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+//    @GetMapping("")
+//    public Result queryEmp(String name,
+//                           Integer gender,
+//                           @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
+//                           @RequestParam(defaultValue = "1") Integer currentPage,
+//                           @RequestParam(defaultValue = "20") Integer pageSize){
+//
+//
+//        PageResult<Emp> page = empService.queryEmp(name,gender,date,currentPage,pageSize);
+//
+//        if(page != null){
+//            log.info("条件分页查询第{}页",currentPage);
+//            log.info("查询条件:name={},gender={},date={}",name,gender,date);
+//
+//            return Result.success(page);
+//        }
+//        else{
+//            log.error("查询失败");
+//            return Result.error("查询失败");
+//        }
+//    }
     @GetMapping("")
-    public Result queryEmp(String name,
-                           Integer gender,
-                           @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
-                           @RequestParam(defaultValue = "1") Integer currentPage,
-                           @RequestParam(defaultValue = "20") Integer pageSize){
+    public Result queryEmp(EmpQueryParam empQueryParam) {
 
-        PageResult<Emp> page = empService.queryEmp(name,gender,date,currentPage,pageSize);
+        log.info("分页查询:{},{},{},{},{}",empQueryParam.getDate(),empQueryParam.getName(),empQueryParam.getGender(),empQueryParam.getCurrentPage(),empQueryParam.getPageSize());
 
-        if(page != null){
-            log.info("条件分页查询第{}页",currentPage);
-            log.info("查询条件:name={},gender={},date={}",name,gender,date);
+        PageResult<Emp> pageResult = empService.queryEmp(empQueryParam);
 
-            return Result.success(page);
+        if(pageResult !=null){
+            log.info("查询成功");
+            return Result.success(pageResult);
         }
         else{
             log.error("查询失败");
             return Result.error("查询失败");
         }
+
     }
 
 
