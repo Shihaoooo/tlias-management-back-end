@@ -23,12 +23,12 @@ public interface DeptMapper {
     Dept getById(Integer id);
 
     @Delete("delete from dept where id = #{id}")
-    boolean deleteById(Integer id);
+    Integer deleteById(Integer id);
 
     @Insert("insert into dept(name, create_time, update_time)" +
             " values(#{name}, now(), now())")
-    boolean addDept(String deptName);
+    Integer addDept(String deptName);
 
     @Update("update dept set name=#{newDeptName},update_time=now() where id=#{id}")
-    boolean updateById(Integer id, String newDeptName);
+    Integer updateById(Integer id, String newDeptName);
 }
