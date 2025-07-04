@@ -29,10 +29,12 @@ public class DeptController {
         log.info("检索全部部门数据");
         List<Dept> deptList = deptService.findAll();
         if (!deptList.isEmpty()){
+            log.info("检索成功");
             return Result.success(deptList);
         }
         else{
-            return Result.error("没有找到部门数据");
+            log.error("检索失败");
+            return Result.error("无可用数据");
         }
     }
 
@@ -44,9 +46,11 @@ public class DeptController {
         Dept target = deptService.getById(id);
 
         if (target != null){
+            log.info("查询成功");
             return Result.success(target.getName());
         }
         else{
+            log.error("查询失败");
             return Result.error("没有找到该部门");
         }
     }
@@ -73,12 +77,14 @@ public class DeptController {
     public Result delete( Integer id){
         //System.out.println("删除id为"+id+"的部门");
         log.info("删除id为{}的部门",id);
-        boolean flag = deptService.deleteById(id);
-        if(flag){
+        Integer affected = deptService.deleteById(id);
+        if(affected > 0){
+            log.info("删除成功");
             return Result.success();
         }
         else{
-            return Result.error("删除发生错误 !");
+            log.error("删除失败");
+            return Result.error("删除失败");
         }
     }
 
@@ -89,12 +95,14 @@ public class DeptController {
         //System.out.println("添加部门"+dept_name);
         log.info("添加部门{}",dept_name);
 
-        boolean flag = deptService.addDept(dept_name);
+        Integer affected = deptService.addDept(dept_name);
 
-        if (flag){
+        if (affected > 0){
+            log.info("添加成功");
             return Result.success();
         }
         else{
+            log.error("添加失败");
             return Result.error("添加失败");
         }
     }
@@ -109,12 +117,14 @@ public class DeptController {
         //System.out.println("修改id为"+id+"的部门名称为"+newDeptName);
         log.info("修改id为{}的部门名称为{}",id,newDeptName);
 
-        boolean flag = deptService.updateById(id,newDeptName);
+        Integer affected = deptService.updateById(id,newDeptName);
 
-        if(flag){
+        if(affected > 0){
+            log.info("修改成功");
             return Result.success();
         }
         else{
+            log.error("修改失败");
             return Result.error("更新失败");
         }
     }
