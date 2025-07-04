@@ -1,6 +1,7 @@
 package com.itheima.mapper;
 
 import com.itheima.pojo.Emp;
+import com.itheima.pojo.EmpExpr;
 import com.itheima.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -25,14 +26,14 @@ public interface EmpMapper {
     //        "where username like '%#{name}%' and gender = #{gender} and date >= #{date} order by e.update_time desc")
     List<Emp> queryEmp(EmpQueryParam empQueryParam);
 
-
     // 添加员工
-    @Insert("insert into emp value(#{name},#{gender},#{image},#{deptName},#{job},now(),now())")
-    boolean addEmp(String name, String gender, String image, String deptName, String job);
+    @Insert("insert into emp(username, name, gender, phone, job, salary, image, date, dept_id, create_time, update_time) "
+    +"value(#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{date},#{deptId},current_date,current_date)")
+    Integer addEmp(Emp emp);
 
     // 删除员工
     @Delete("#")
-    boolean deleteEmp();
+    Integer deleteEmp();
 
 
 

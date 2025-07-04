@@ -5,10 +5,22 @@
 <mapper namespace="com.itheima.mapper.EmpMapper">
     <select id="queryEmp" resultType="com.itheima.pojo.Emp">
         <!--id指mapper接口中映射的方法名；resultType指单行数据封装的对象类型-->
-        select e.name as username,e.gender,e.image,e.job,e.date,d.name as deptname,e.update_time from emp e left join dept d on e.dept_id = d.id
-        where e.name like concat('%',#{name},'%')
-        and gender = #{gender}
-        and date >= #{date}
+        select e.name as empName,e.gender,e.image,e.job,e.date,d.name as deptName,e.update_time from emp e left join dept d on e.dept_id = d.id
+        <!--trim prefix="where" prefixOverrides="and | or"-->
+        <!--/trim-->
+        <where>
+            <if test="name!= null and name!='' ">
+                e.name like concat('%',#{name},'%')
+            </if>
+
+            <if test="gender!=null and gender!='' ">
+                and gender=#{gender}
+            </if>
+
+            <if test="date!=null and gender!='' ">
+                and date>=#{date}
+            </if>
+        </where>
         order by e.update_time desc
     </select>
 

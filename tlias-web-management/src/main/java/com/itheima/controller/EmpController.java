@@ -46,8 +46,8 @@ public class EmpController {
     @GetMapping("")
     public Result queryEmp(EmpQueryParam empQueryParam) {
 
-        log.info("分页查询:{},{},{},{},{}",empQueryParam.getDate(),empQueryParam.getName(),empQueryParam.getGender(),empQueryParam.getCurrentPage(),empQueryParam.getPageSize());
-
+        log.info("分页查询:{},{},{},{},{}",empQueryParam.getName(),empQueryParam.getGender(),empQueryParam.getDate(),empQueryParam.getCurrentPage(),empQueryParam.getPageSize());
+        System.out.println(empQueryParam.getName());
         PageResult<Emp> pageResult = empService.queryEmp(empQueryParam);
 
         if(pageResult !=null){
@@ -58,8 +58,21 @@ public class EmpController {
             log.error("查询失败");
             return Result.error("查询失败");
         }
-
     }
 
+    // 添加员工
+    @PostMapping("")
+    public Result addEmp(@RequestBody Emp emp){
+        log.info("新增员工：{}",emp);
 
+        Integer affected = empService.addEmp(emp);
+        if(affected > 0){
+            log.info("新增成功");
+            return Result.success();
+        }
+        else{
+            log.error("添加失败");
+            return Result.error("添加失败");
+        }
+    }
 }
