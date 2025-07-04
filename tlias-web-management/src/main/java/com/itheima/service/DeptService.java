@@ -13,11 +13,11 @@ public interface DeptService {
     Dept getById(Integer id);
 
     // 根据id删除数据
-    boolean deleteById(Integer id);
+    Integer deleteById(Integer id);
 
     // 根据部门名增加数据
-    boolean addDept(String deptName);
+    Integer addDept(String deptName);
 
     // 根据id修改部门名
-    boolean updateById(Integer id, String newDeptName);
+    Integer updateById(Integer id, String newDeptName);
 }

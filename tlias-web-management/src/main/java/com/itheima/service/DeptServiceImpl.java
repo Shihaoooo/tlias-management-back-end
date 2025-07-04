@@ -21,18 +21,15 @@ public class DeptServiceImpl implements DeptService {
 
     // 根据部门id删除部门信息
     @Override
-    public boolean deleteById(Integer id) {
+    public Integer deleteById(Integer id) {
         return deptMapper.deleteById(id);
     }
 
     // 添加部门
     @Override
-    public boolean addDept(String deptName) {
-        boolean flag=  deptMapper.addDept(deptName);
+    public Integer addDept(String deptName) {
+        return deptMapper.addDept(deptName);
 
-        System.out.println(flag);
-
-        return flag;
     }
 
     // 根据部门id查询部门信息
@@ -44,7 +41,7 @@ public class DeptServiceImpl implements DeptService {
 
     // 根据部门id修改部门信息
     @Override
-    public boolean updateById(Integer id, String newDeptName) {
+    public Integer updateById(Integer id, String newDeptName) {
 
         return deptMapper.updateById(id, newDeptName);
     }
