@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class EmpExpr {
     private Integer id;
-    private Integer empId;
+    private Integer empId;  //员工ID
     private LocalDate date;
     private String company;
     private String job;

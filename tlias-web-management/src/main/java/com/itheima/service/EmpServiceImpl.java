@@ -12,6 +12,7 @@ import com.itheima.pojo.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 @Slf4j
@@ -34,29 +35,36 @@ public class EmpServiceImpl implements EmpService {
     }
 
     // 添加员工
+    @Transactional
     public Integer addEmp(Emp emp){
         // 1.保存员工基本信息
         Integer affectedOnEmp =  empMapper.addEmp(emp);
 
         // 2.当员工工作经历不为空时，才添加工作经历
         if (CollectionUtils.isEmpty(emp.getEmpExpr())){
-            addEmpExpr(emp);
+            _addEmpExpr(emp);
         }
 
         return affectedOnEmp;
     }
 
-    // 保存员工工作经历(是由方法，保证不会被外部意外调用)
-    private void addEmpExpr(Emp emp){
-        // 循环逐个添加
-        for(EmpExpr empExpr:emp.getEmpExpr()){
-            Integer affected = empExprMapper.addEmpExpr(empExpr);
-            if (affected > 0){
-                log.info("员工经历添加成功");
-            }
-            else{
-                log.error("员工经历添加失败");
-            }
+    // 保存员工工作经历(保证不会被外部意外调用)
+    @Transactional
+    public void _addEmpExpr(Emp emp){
+        // 1.批量为Expr对象的empId赋值（emp的id已用主键返回获取并封装）
+        for(EmpExpr expr : emp.getEmpExpr()){
+            expr.setEmpId(emp.getId());
         }
+
+        // 2.判断
+        Integer affected = empExprMapper.addEmpExpr(emp.getEmpExpr());
+
+        if (affected!=null && affected > 0){
+            log.info("员工经验插入成功");
+        }
+        else{
+            log.error("员工经验插入失败");
+        }
+
     }
 }

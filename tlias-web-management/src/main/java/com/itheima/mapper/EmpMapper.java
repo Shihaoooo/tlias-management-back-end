@@ -3,10 +3,8 @@ package com.itheima.mapper;
 import com.itheima.pojo.Emp;
 import com.itheima.pojo.EmpExpr;
 import com.itheima.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,9 +25,13 @@ public interface EmpMapper {
     List<Emp> queryEmp(EmpQueryParam empQueryParam);
 
     // 添加员工
+    @Options(useGeneratedKeys = true,keyProperty = "id")
     @Insert("insert into emp(username, name, gender, phone, job, salary, image, date, dept_id, create_time, update_time) "
     +"value(#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{date},#{deptId},current_date,current_date)")
     Integer addEmp(Emp emp);
+    /*
+     * 由于在添加员工的emp_id时，emp_id的值始终为空(因为id是先插入员工表后自动生成的id)
+     * 这时候可以借助mybatis的主键返回功能来获取到id*/
 
     // 删除员工
     @Delete("#")

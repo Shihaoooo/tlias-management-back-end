@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Emp {
     // 员工基本信息
-    private Integer id;
+    private Integer id;    // 员工id（empId）
     private String username;
     private String password;
     private String name;
