@@ -98,7 +98,7 @@ public class DeptController {
         Integer affected = deptService.addDept(dept_name);
 
         if (affected > 0){
-            log.info("添加成功");
+            log.info("添加成功,{}条数据被影响",affected);
             return Result.success();
         }
         else{
@@ -120,7 +120,7 @@ public class DeptController {
         Integer affected = deptService.updateById(id,newDeptName);
 
         if(affected > 0){
-            log.info("修改成功");
+            log.info("修改成功，{}条数据被影响",affected);
             return Result.success();
         }
         else{

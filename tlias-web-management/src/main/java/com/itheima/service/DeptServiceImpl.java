@@ -4,6 +4,7 @@ import com.itheima.mapper.DeptMapper;
 import com.itheima.pojo.Dept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,12 +22,14 @@ public class DeptServiceImpl implements DeptService {
 
     // 根据部门id删除部门信息
     @Override
+    @Transactional
     public Integer deleteById(Integer id) {
         return deptMapper.deleteById(id);
     }
 
     // 添加部门
     @Override
+    @Transactional
     public Integer addDept(String deptName) {
         return deptMapper.addDept(deptName);
 
@@ -41,6 +44,7 @@ public class DeptServiceImpl implements DeptService {
 
     // 根据部门id修改部门信息
     @Override
+    @Transactional
     public Integer updateById(Integer id, String newDeptName) {
 
         return deptMapper.updateById(id, newDeptName);
