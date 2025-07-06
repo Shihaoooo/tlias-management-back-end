@@ -249,7 +249,7 @@ select e.name as username,e.gender,e.image,e.job,e.date,d.name as deptname,e.upd
 # 查询总记录数
 select count(*) from emp e left join dept d on e.dept_id = d.id;
 
-update emp set image='#';
+update emp set image='https://java-web-application.oss-cn-beijing.aliyuncs.com/headIcon.jpg';
 
 INSERT INTO emp_expr (emp_id, date, company, job) VALUES
                                                       (1, '2018-03-15', '科技有限公司', '软件工程师'),
