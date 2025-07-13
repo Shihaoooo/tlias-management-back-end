@@ -15,4 +15,7 @@ public interface EmpService {
 
     // 添加员工
     Integer addEmp(Emp emp);
+
+    // 删除员工
+    void deleteEmpByIds(List<Integer> ids);
 }

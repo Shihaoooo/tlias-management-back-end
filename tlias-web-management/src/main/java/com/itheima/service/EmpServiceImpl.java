@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -66,5 +68,15 @@ public class EmpServiceImpl implements EmpService {
             log.error("员工经验插入失败");
         }
 
+    }
+
+    @Transactional
+    public void deleteEmpByIds(List<Integer> ids){
+
+        // 1.删除员工基本信息
+        empMapper.deleteEmpByIds(ids);
+
+        // 2.删除员工经历信息
+        empExprMapper.deleteEmpExprByIds(ids);
     }
 }

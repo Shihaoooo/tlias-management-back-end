@@ -5,11 +5,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itheima.mapper.EmpExprMapper">
+
+    <!--新增员工经验-->
     <insert id="addEmpExpr">
         insert into emp_expr(emp_id,date,company,job) values
         <foreach collection="exprList" item="expr" separator=", ">
             (#{expr.empId},#{expr.date},#{expr.company},#{expr.job})
         </foreach>
     </insert>
+
+    <!--删除员工经验-->
+    <delete id="deleteEmpExprByIds">
+        delete from emp_expr where emp_id in
+        <foreach collection="ids" item="emp_id" open="(" close=")">
+            #{emp_id}
+        </foreach>
+    </delete>
 
 </mapper>

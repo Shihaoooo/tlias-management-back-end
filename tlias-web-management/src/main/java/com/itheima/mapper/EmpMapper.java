@@ -34,8 +34,7 @@ public interface EmpMapper {
      * 这时候可以借助mybatis的主键返回功能来获取到id*/
 
     // 删除员工
-    @Delete("#")
-    Integer deleteEmp();
+    Integer deleteEmpByIds(List<Integer> ids);
 
 
 

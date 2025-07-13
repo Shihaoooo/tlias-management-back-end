@@ -1,16 +1,19 @@
 package com.itheima.controller;
 
+import com.itheima.mapper.EmpMapper;
 import com.itheima.pojo.Emp;
 import com.itheima.pojo.EmpQueryParam;
 import com.itheima.pojo.PageResult;
 import com.itheima.pojo.Result;
 import com.itheima.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/emps")
@@ -22,7 +25,7 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
-//    @GetMapping("")
+    //    @GetMapping("")
 //    public Result queryEmp(String name,
 //                           Integer gender,
 //                           @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
@@ -43,6 +46,7 @@ public class EmpController {
 //            return Result.error("查询失败");
 //        }
 //    }
+    // 分页查询
     @GetMapping("")
     public Result queryEmp(EmpQueryParam empQueryParam) {
 
@@ -75,4 +79,15 @@ public class EmpController {
             return Result.error("添加失败");
         }
     }
+
+    // 删除员工
+    @DeleteMapping("")
+    public Result delateEmp(@RequestParam("ids") List<Integer> ids){
+        // 1. 删除员工基本信息 和 员工经验信息
+        empService.deleteEmpByIds(ids);
+
+        return Result.success();
+
+    }
+
 }
