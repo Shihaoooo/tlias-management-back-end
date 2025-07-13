@@ -6,6 +6,7 @@ import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.common.comm.SignVersion;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
@@ -14,14 +15,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 @Component
 public class AliyunOSSOperator {
-    // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
-    private String endpoint = "https://oss-cn-beijing.aliyuncs.com";
+//    // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
+//    @Value("${aliyun.oss.endpoint}")
+//    private String endpoint;
+//
+//    // 填写Bucket名称，例如examplebucket。
+//    @Value("${aliyun.oss.bucketName}")
+//    private String bucketName;
+//
+//    // 填写Bucket所在地域。以华东1（杭州）为例，Region填写为cn-hangzhou。
+//    @Value("${aliyun.oss.regoin}")
+//    private String region;
 
-    // 填写Bucket名称，例如examplebucket。
-    private String bucketName = "java-web-application";
+    @Autowired
+    private AliyunOSSProperties aliyunOSSProperties;
 
-    // 填写Bucket所在地域。以华东1（杭州）为例，Region填写为cn-hangzhou。
-    private String region = "cn-beijing";
+    private String endpoint = aliyunOSSProperties.getEndpoint();
+
+    private String region = aliyunOSSProperties.getRegion();
+
+    private String bucketName = aliyunOSSProperties.getBucketName();
 
     public String upload(String originalFileName, InputStream file) throws Exception {
 
