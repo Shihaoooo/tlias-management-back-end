@@ -1,6 +1,6 @@
 package com.itheima.mapper;
 
-import com.itheima.pojo.Dept;
+import com.itheima.pojo.dept.Dept;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
