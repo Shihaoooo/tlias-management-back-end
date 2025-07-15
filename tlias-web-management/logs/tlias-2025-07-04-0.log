@@ -67,7 +67,7 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
 	at jdk.proxy2/jdk.proxy2.$Proxy89.queryEmp(Unknown Source)
-	at com.itheima.service.EmpServiceImpl.queryEmp(EmpServiceImpl.java:23)
+	at com.itheima.service.impl.EmpServiceImpl.queryEmp(EmpServiceImpl.java:23)
 	at com.itheima.controller.EmpController.queryEmp(EmpController.java:51)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -163,7 +163,7 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 2025-07-04 10:19:35.328 [http-nio-8080-exec-8] INFO  com.itheima.controller.EmpController - 查询成功
 2025-07-04 10:19:42.939 [http-nio-8080-exec-9] INFO  com.itheima.controller.EmpController - 分页查询:2022-07-05,null,1,1,20
 2025-07-04 10:19:42.951 [http-nio-8080-exec-9] INFO  com.itheima.controller.EmpController - 查询成功
-2025-07-04 10:19:53.281 [http-nio-8080-exec-10] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.itheima.pojo.Result com.itheima.controller.EmpController.queryEmp(com.itheima.pojo.EmpQueryParam): [Field error in object 'empQueryParam' on field 'date': rejected value [null]; codes [typeMismatch.empQueryParam.date,typeMismatch.date,typeMismatch.java.time.LocalDate,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empQueryParam.date,date]; arguments []; default message [date]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.time.LocalDate' for property 'date'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.time.LocalDate] for value [null]]] ]
+2025-07-04 10:19:53.281 [http-nio-8080-exec-10] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.itheima.pojo.result.Result com.itheima.controller.EmpController.queryEmp(com.itheima.pojo.emp.EmpQueryParam): [Field error in object 'empQueryParam' on field 'date': rejected value [null]; codes [typeMismatch.empQueryParam.date,typeMismatch.date,typeMismatch.java.time.LocalDate,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empQueryParam.date,date]; arguments []; default message [date]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.time.LocalDate' for property 'date'; Failed to convert from type [java.lang.String] to type [@org.springframework.format.annotation.DateTimeFormat java.time.LocalDate] for value [null]]] ]
 2025-07-04 10:23:09.771 [http-nio-8080-exec-1] INFO  com.itheima.controller.EmpController - 分页查询:null,null,null,1,20
 2025-07-04 10:23:09.778 [http-nio-8080-exec-1] INFO  com.itheima.controller.EmpController - 查询成功
 2025-07-04 10:23:25.170 [http-nio-8080-exec-2] INFO  com.itheima.controller.EmpController - 分页查询:null,null,null,1,20

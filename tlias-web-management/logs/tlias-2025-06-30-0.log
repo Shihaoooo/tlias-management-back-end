@@ -292,7 +292,7 @@ com.mysql.cj.exceptions.DataConversionException: Cannot determine value type fro
 	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
 	at jdk.proxy2/jdk.proxy2.$Proxy89.queryAllEmp(Unknown Source)
-	at com.itheima.service.EmpServiceImpl.queryEmp(EmpServiceImpl.java:19)
+	at com.itheima.service.impl.EmpServiceImpl.queryEmp(EmpServiceImpl.java:19)
 	at queryAllEmp(EmpController.java:27)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
