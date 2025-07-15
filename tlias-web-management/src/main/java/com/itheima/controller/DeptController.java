@@ -1,6 +1,6 @@
 package com.itheima.controller;
-import com.itheima.pojo.Dept;
-import com.itheima.pojo.Result;
+import com.itheima.pojo.dept.Dept;
+import com.itheima.pojo.result.Result;
 import com.itheima.service.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
