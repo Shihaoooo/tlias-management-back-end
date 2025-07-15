@@ -652,5 +652,42 @@ INSERT INTO emp_expr (emp_id, date, company, job) VALUES
                                                       (199, '2016-05-10', '广告公司', '摄影助理'),
                                                       (200, '2019-06-24', '旅行社', '销售代表'),
                                                       (200, '2017-11-11', '旅游公司', '计调员');
-
+select * from emp;
 select * from emp_expr;
+
+
+# 查询员工的基本信息（包括工作经历）
+select emp.* ,
+       emp_expr.id as ee_id,
+       emp_expr.emp_id,
+       emp_expr.date as ee_date,
+       emp_expr.company as ee_company,
+       emp_expr.job as ee_job
+from emp left join  emp_expr on emp.id = emp_expr.emp_id where emp_id=1 ;
+
+# 统计职位人数
+select job_name,count(*) as 人数 from emp left join job_mapping on job=job_id group by job order by job ;
+
+create table job_mapping(
+    job_id int unique auto_increment primary key ,
+    job_name varchar(10) unique
+);
+
+insert into job_mapping(job_name)
+values('班主任'),
+      ('讲师'),
+      ('学工主管'),
+      ('教研主管'),
+      ('咨询师');
+
+select * from job_mapping order by job_id;
+
+select
+    (case gender
+    when 1 then '男性员工'
+    when 2 then '女性员工'
+        end )as gender,
+        count(*) as 'num'
+from emp
+group by gender
+order by gender DESC ;
