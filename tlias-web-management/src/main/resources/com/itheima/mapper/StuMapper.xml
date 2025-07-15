@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.StuMapper">
+
+    <!--分页查询学生信息-->
+    <select id="getStu" resultType="com.itheima.pojo.stu.Stu">
+        select * from student
+        <where>
+            <if test="name != null and name != ''">and name like concat('%',#{name},'%')</if>
+            <if test="degree != null">and degree = #{degree}</if>
+            <if test="clazzId != null">and clazz_id = #{clazzId}</if>
+        </where>
+    </select>
+
+    <!--删除学生信息-->
+    <delete id="deleteStu">
+        delete from student
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--修改学生信息-->
+    <update id="updateStu">
+        update student
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="no != null and no != ''">no = #{no},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="degree != null">degree = #{degree},</if>
+            <if test="idCard != null and idCard != ''">id_card = #{idCard},</if>
+            <if test="isCollege != null">is_college = #{isCollege},</if>
+            <if test="address != null and address != ''">address = #{address},</if>
+            <if test="graduationDate != null">graduation_date = #{graduationDate},</if>
+            <if test="violationCount != null">violation_count = #{violationCount},</if>
+            <if test="violationScore != null">violation_score = #{violationScore},</if>
+            <if test="clazzId != null">clazz_id = #{clazzId},</if>
+
+            update_time = now()
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="addStu">
+        insert into student
+        (name, no, gender, phone, id_card, is_college,
+        address, degree, graduation_date,
+        clazz_id, create_time, update_time)
+        values
+        (#{name},#{no},#{gender},#{phone},#{idCard},
+        #{isCollege},#{address},#{degree},#{graduationDate},
+        #{clazzId},current_date(),current_date())
+    </insert>
+</mapper>
