@@ -1,10 +1,9 @@
 package com.itheima.service;
 
-import com.itheima.pojo.Emp;
-import com.itheima.pojo.EmpQueryParam;
-import com.itheima.pojo.PageResult;
+import com.itheima.pojo.emp.Emp;
+import com.itheima.pojo.emp.EmpQueryParam;
+import com.itheima.pojo.result.PageResult;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface EmpService {
@@ -18,4 +17,10 @@ public interface EmpService {
 
     // 删除员工
     void deleteEmpByIds(List<Integer> ids);
+
+    // 查询回显
+    Emp queryEmpById(Integer id);
+
+    // 修改员工
+    void  update(Emp emp);
 }

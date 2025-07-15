@@ -1,18 +1,14 @@
 package com.itheima.controller;
 
-import com.itheima.mapper.EmpMapper;
-import com.itheima.pojo.Emp;
-import com.itheima.pojo.EmpQueryParam;
-import com.itheima.pojo.PageResult;
-import com.itheima.pojo.Result;
+import com.itheima.pojo.emp.Emp;
+import com.itheima.pojo.emp.EmpQueryParam;
+import com.itheima.pojo.result.PageResult;
+import com.itheima.pojo.result.Result;
 import com.itheima.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+;
 import java.util.List;
 
 @Slf4j
@@ -82,12 +78,33 @@ public class EmpController {
 
     // 删除员工
     @DeleteMapping("")
-    public Result delateEmp(@RequestParam("ids") List<Integer> ids){
+    public Result deleteEmp(@RequestParam("ids") List<Integer> ids){
         // 1. 删除员工基本信息 和 员工经验信息
         empService.deleteEmpByIds(ids);
 
         return Result.success();
 
+    }
+
+    // 查询回显
+    @GetMapping("/{id}")
+    public Result queryEmpById(@PathVariable Integer id){
+        log.info("根据ID:{}查询员工信息",id);
+
+        Emp emp = empService.queryEmpById(id);
+
+        return Result.success(emp);
+
+    }
+
+    // 修改员工信息
+    @PutMapping("")
+    public Result update(@RequestBody Emp emp){
+        log.info("修改员工:\n{}",emp);
+
+        empService.update(emp);
+
+        return Result.success();
     }
 
 }

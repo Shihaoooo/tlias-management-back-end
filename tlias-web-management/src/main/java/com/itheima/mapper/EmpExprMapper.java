@@ -1,9 +1,7 @@
 package com.itheima.mapper;
 
-import com.itheima.pojo.EmpExpr;
-import org.apache.ibatis.annotations.Insert;
+import com.itheima.pojo.emp.EmpExpr;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 
 import java.util.List;
 

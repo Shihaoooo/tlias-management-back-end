@@ -1,12 +1,11 @@
 package com.itheima.mapper;
 
-import com.itheima.pojo.Emp;
-import com.itheima.pojo.EmpExpr;
-import com.itheima.pojo.EmpQueryParam;
+import com.itheima.pojo.emp.Emp;
+import com.itheima.pojo.emp.EmpQueryParam;
 import org.apache.ibatis.annotations.*;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface EmpMapper {
@@ -36,6 +35,14 @@ public interface EmpMapper {
     // 删除员工
     Integer deleteEmpByIds(List<Integer> ids);
 
+    // 查询回显
+    Emp queryEmpById(Integer id);
 
+    // 修改员工
+    void update(Emp emp);
 
+    @MapKey("pos")
+    List<Map<String,Object>> countEmpJobData();
+
+    List<Map<Object, Object>> getEmpGenderData();
 }
