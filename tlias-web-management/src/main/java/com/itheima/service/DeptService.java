@@ -1,6 +1,6 @@
 package com.itheima.service;
 
-import com.itheima.pojo.Dept;
+import com.itheima.pojo.dept.Dept;
 
 import java.util.List;
 
