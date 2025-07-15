@@ -24,19 +24,19 @@ public class AliyunOSSOperator {
 //    private String bucketName;
 //
 //    // 填写Bucket所在地域。以华东1（杭州）为例，Region填写为cn-hangzhou。
-//    @Value("${aliyun.oss.regoin}")
+//    @Value("${aliyun.oss.region}")
 //    private String region;
 
     @Autowired
     private AliyunOSSProperties aliyunOSSProperties;
 
-    private String endpoint = aliyunOSSProperties.getEndpoint();
-
-    private String region = aliyunOSSProperties.getRegion();
-
-    private String bucketName = aliyunOSSProperties.getBucketName();
-
     public String upload(String originalFileName, InputStream file) throws Exception {
+
+        String endpoint = aliyunOSSProperties.getEndpoint();
+
+        String region = aliyunOSSProperties.getRegion();
+
+        String bucketName = aliyunOSSProperties.getBucketName();
 
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
@@ -81,7 +81,7 @@ public class AliyunOSSOperator {
         return endpoint.split("//")[0] + bucketName + "." +endpoint.split("//")[1] + "/" + fileName;
     }
 
-    public static String fileNameGenerator(String originalFileName) {
+    public String fileNameGenerator(String originalFileName) {
         // 生成标识UUID
         String uuid = UUID.randomUUID().toString();
 

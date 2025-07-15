@@ -11,6 +11,4 @@ public class AliyunOSSProperties {
     private String endpoint;
     private String region;
     private String bucketName;
-
-
 }
