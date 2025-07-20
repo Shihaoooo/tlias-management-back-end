@@ -8,6 +8,9 @@ create table emp_expr(
     job varchar(50) comment '职位'
 ) comment '工作经历';
 
+select emp.* , emp_expr.id as ee_id, emp_expr.emp_id, emp_expr.date as ee_date, emp_expr.company as ee_company, emp_expr.job as ee_job from emp left join emp_expr on emp.id = emp_expr.emp_id where emp_id=1;
+
+select * from emp;
 create table emp(
                     id int unsigned primary key auto_increment comment 'ID,主键',
                     username varchar(20) not null unique comment '用户名',

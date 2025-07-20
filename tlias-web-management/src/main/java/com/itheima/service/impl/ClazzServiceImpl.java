@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.mapper.ClazzMapper;
 import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.clazz.ClazzContainDataStatistics;
 import com.itheima.pojo.clazz.ClazzQueryParam;
 import com.itheima.pojo.result.PageResult;
 import com.itheima.service.ClazzService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ClazzServiceImpl implements ClazzService {
@@ -61,6 +63,16 @@ public class ClazzServiceImpl implements ClazzService {
     @Override
     public List<Clazz> getClazzList() {
         return clazzMapper.getClazzList();
+    }
+
+    @Override
+    public ClazzContainDataStatistics getClazzContainData(){
+        List<Map<Object,Object>> data = clazzMapper.getClazzContainData();
+
+        List<Object>clazzList = data.stream().map(map -> map.get("clazzList")).toList();
+        List<Object> dataList = data.stream().map(map -> map.get("dataList")).toList();
+
+        return new ClazzContainDataStatistics(clazzList,dataList);
     }
 
 

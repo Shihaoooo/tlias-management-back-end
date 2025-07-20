@@ -21,6 +21,11 @@
         ]]></if>
         </where>
     </select>
+    <select id="getClazzContainData" resultType="java.util.Map">
+        select c.name as clazzList ,count(0) as dataList from clazz as c left join  student as s
+        on c.id = s.clazz_id
+        group by c.name ;
+    </select>
 
     <update id="updateClazz">
         update clazz

@@ -20,3 +20,7 @@ aliyun:
     endpoint: https://oss-cn-beijing.aliyuncs.com
     bucketName: java-web-application
     region: cn-beijing
+
+jwt:
+  secret: 5ZGo6K+X55qT
+  expire: 3600000

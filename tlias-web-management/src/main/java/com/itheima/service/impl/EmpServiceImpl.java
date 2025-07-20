@@ -7,9 +7,13 @@ import com.itheima.mapper.EmpExprMapper;
 import com.itheima.mapper.EmpMapper;
 import com.itheima.pojo.emp.Emp;
 import com.itheima.pojo.emp.EmpExpr;
+import com.itheima.pojo.emp.EmpJobDataStatistics;
 import com.itheima.pojo.emp.EmpQueryParam;
+import com.itheima.pojo.login.LoginInfo;
 import com.itheima.pojo.result.PageResult;
 import com.itheima.service.EmpService;
+import com.itheima.utils.JWTUtils;
+import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -27,6 +33,9 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpExprMapper empExprMapper;
+
+    @Autowired
+    private JWTUtils jwtUtils;
 
     // 分页查询
     @Override
@@ -103,11 +112,47 @@ public class EmpServiceImpl implements EmpService {
         empMapper.deleteEmpByIds(Arrays.asList(emp.getId()));
 
         empExprMapper.addEmpExpr(emp.getExprList());
+    }
 
+    // 统计员工岗位人数
+    public EmpJobDataStatistics getEmpJobData() {
+        // 1 调用mapper接口，获取统计数据
+        List<Map<String,Object>> list = empMapper.countEmpJobData();
 
+        List<Object> jobList = list.stream().map(dataMap ->dataMap.get("pos")).toList();
+        List<Object> dataList = list.stream().map(dataMap ->dataMap.get("num")).toList();
+
+        return new EmpJobDataStatistics(jobList,dataList);
 
     }
 
+    // 统计员工性别人数
+    @Override
+    public List<Map<Object, Object>> getEmpGenderData() {
+        return empMapper.getEmpGenderData();
+    }
+
+    // 员工登陆
+    @Override
+    public LoginInfo login(Emp emp) {
+        // 1.调用mapper接口
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+
+        if (e != null){
+            log.info("登陆成功,员工信息{}",emp);
+
+            // 生成Jwt令牌
+            Map<String,Object> claims = new HashMap<>();
+            claims.put("id",e.getId());
+            claims.put("username",e.getUsername());
+
+            String jwt = jwtUtils.createJWT(claims);
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),jwt);
+        }
+        log.info("登陆失败");
+        return null;
+
+    }
 
 
 }

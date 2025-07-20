@@ -1,6 +1,7 @@
 package com.itheima.mapper;
 
 import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.clazz.ClazzContainDataStatistics;
 import com.itheima.pojo.clazz.ClazzQueryParam;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ClazzMapper {
@@ -34,4 +36,7 @@ public interface ClazzMapper {
     // 获取全部班级信息
     @Select("select * from clazz;")
     List<Clazz> getClazzList();
+
+    // 统计各班人数
+    List<Map<Object,Object>> getClazzContainData();
 }

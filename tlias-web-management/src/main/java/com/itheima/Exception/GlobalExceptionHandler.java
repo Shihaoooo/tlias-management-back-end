@@ -28,6 +28,6 @@ public class GlobalExceptionHandler {
     public Result exception(Exception e) {
         log.error(e.getMessage(), e);
 
-        return Result.error("服务端出错啦" + e.getMessage());
+        return Result.error("服务端出错啦～");
     }
 }
