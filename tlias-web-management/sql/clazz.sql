@@ -30,3 +30,7 @@ where clazz.name like concat('%','java','%') and begin_date > '2023-01-01';
 
 
 select * from clazz;
+
+select c.name as clazzList ,count(0) as dataList from clazz as c left join  student as s
+on c.id = s.clazz_id
+group by c.name ;
