@@ -1,6 +1,7 @@
 package com.itheima.service;
 
 import com.itheima.pojo.stu.Stu;
+import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
 import com.itheima.pojo.result.PageResult;
 
@@ -25,4 +26,7 @@ public interface StuService {
 
     // 添加学生违纪信息
     void violation(Integer id, Integer score);
+
+    // 统计学生学历信息
+    List<StuDegreeDataStatistics> getStuDegreeData();
 }

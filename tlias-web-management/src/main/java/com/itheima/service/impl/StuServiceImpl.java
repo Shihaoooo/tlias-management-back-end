@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.mapper.StuMapper;
 import com.itheima.pojo.stu.Stu;
+import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
 import com.itheima.pojo.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,11 @@ public class StuServiceImpl implements StuService{
     public void violation(Integer id, Integer score) {
         stuMapper.violation(id,score);
 
+    }
+
+    // 统计学生学历信息
+    @Override
+    public List<StuDegreeDataStatistics> getStuDegreeData() {
+        return stuMapper.getStuDegreeData();
     }
 }

@@ -1,6 +1,7 @@
 package com.itheima.mapper;
 
 import com.itheima.pojo.stu.Stu;
+import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -32,4 +33,7 @@ public interface StuMapper {
             "violation_score = violation_score + #{score} " +
             "where id = #{id} ")
     void violation(Integer id, Integer score);
+
+    // 统计学生学历信息
+    List<StuDegreeDataStatistics> getStuDegreeData();
 }

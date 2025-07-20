@@ -43,3 +43,13 @@ from clazz;
 
 select *
 from student;
+
+select (case degree
+    when 1 then '初中'
+    when 2 then '高中'
+    when 3 then '大专'
+    when 4 then '本科'
+    when 5 then '硕士' end) as name
+     ,count(0) as value
+from student
+group by degree ;
