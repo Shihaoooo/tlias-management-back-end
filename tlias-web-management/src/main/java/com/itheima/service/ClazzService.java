@@ -1,6 +1,7 @@
 package com.itheima.service;
 
 import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.clazz.ClazzContainDataStatistics;
 import com.itheima.pojo.clazz.ClazzQueryParam;
 import com.itheima.pojo.result.PageResult;
 
@@ -25,4 +26,7 @@ public interface ClazzService {
 
     // 获取全部班级信息
     List<Clazz> getClazzList();
+
+    // 统计各班级人数
+    ClazzContainDataStatistics getClazzContainData();
 }
