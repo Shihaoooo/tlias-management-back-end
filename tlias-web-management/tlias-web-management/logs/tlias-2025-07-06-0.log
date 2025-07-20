@@ -1,6 +1,0 @@
-2025-07-06 15:52:40.956 [main] INFO  o.s.t.c.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.itheima.TliasWebManagementApplicationTests]: TliasWebManagementApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-07-06 15:52:41.031 [main] INFO  o.s.b.t.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.itheima.TliasWebManagementApplication for test class com.itheima.TliasWebManagementApplicationTests
-2025-07-06 15:52:41.289 [main] INFO  com.itheima.TliasWebManagementApplicationTests - Starting TliasWebManagementApplicationTests using Java 17.0.14 with PID 62255 (started by zhoushihao in /Users/zhoushihao/IdeaProjects/web-ai-project02/tlias-web-management)
-2025-07-06 15:52:41.289 [main] INFO  com.itheima.TliasWebManagementApplicationTests - No active profile set, falling back to 1 default profile: "default"
-2025-07-06 15:52:42.570 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-07-06 15:52:42.617 [main] INFO  com.itheima.TliasWebManagementApplicationTests - Started TliasWebManagementApplicationTests in 1.503 seconds (process running for 2.532)
