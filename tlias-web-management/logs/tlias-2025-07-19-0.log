@@ -154,7 +154,7 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" bec
 2025-07-19 10:31:43.161 [RMI TCP Connection(1)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
 2025-07-19 10:33:24.816 [http-nio-8080-exec-5] INFO  com.itheima.controller.EmpController - 根据ID:2查询员工信息
 2025-07-19 10:33:27.503 [http-nio-8080-exec-6] INFO  com.itheima.controller.EmpController - 根据ID:2查询员工信息
-2025-07-19 10:34:00.180 [http-nio-8080-exec-7] INFO  com.itheima.utils.TokenInterceptor - 令牌解析错误！
+2025-07-19 10:34:00.180 [http-nio-8080-exec-7] INFO  com.itheima.Interceptor.TokenInterceptor - 令牌解析错误！
 2025-07-19 10:34:00.197 [http-nio-8080-exec-8] ERROR com.itheima.Exception.GlobalExceptionHandler - Request method 'GET' is not supported
 org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
 	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:267)
@@ -208,7 +208,7 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-2025-07-19 10:34:26.613 [http-nio-8080-exec-9] INFO  com.itheima.utils.TokenInterceptor - 令牌解析错误！
+2025-07-19 10:34:26.613 [http-nio-8080-exec-9] INFO  com.itheima.Interceptor.TokenInterceptor - 令牌解析错误！
 2025-07-19 10:35:02.550 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=49s266ms).
 2025-07-19 10:36:18.840 [http-nio-8080-exec-10] ERROR com.itheima.Exception.GlobalExceptionHandler - Request method 'GET' is not supported
 org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported

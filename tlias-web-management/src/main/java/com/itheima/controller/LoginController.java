@@ -22,7 +22,7 @@ public class LoginController {
     // 登陆接口
     @PostMapping("")
     public Result login(@RequestBody Emp emp) {
-        log.info("用户登陆{}",emp.getUsername());
+        log.info("用户登陆{}",emp.getUserName());
 
         LoginInfo loginInfo = empService.login(emp);
 

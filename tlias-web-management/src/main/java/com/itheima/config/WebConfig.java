@@ -1,6 +1,6 @@
 package com.itheima.config;
 
-import com.itheima.utils.TokenInterceptor;
+import com.itheima.Interceptor.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,7 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     TokenInterceptor tokenInterceptor;
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
