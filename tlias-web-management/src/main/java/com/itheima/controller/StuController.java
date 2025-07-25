@@ -1,5 +1,7 @@
 package com.itheima.controller;
 
+import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.stu.Degree;
 import com.itheima.pojo.stu.Stu;
 import com.itheima.pojo.stu.StuQueryParam;
 import com.itheima.pojo.result.PageResult;
@@ -36,8 +38,8 @@ public class StuController {
     * 当路径参数的值以逗号分隔时，才能自动封装为List，否则
     * 只能封装为一个数组，要么就自定义一个转换器*/
     // 删除学员信息
-    @DeleteMapping("/{ids}")
-    public Result deleteStu(@PathVariable List<Integer> ids) {
+    @DeleteMapping("")
+    public Result deleteStu(@RequestParam("ids") List<Integer> ids) {
         log.info("删除学员ids：{}",ids);
 
         stuService.deleteStu(ids);
@@ -46,6 +48,7 @@ public class StuController {
 
     }
 
+    // 添加学员
     @PostMapping("")
     public Result addStu(@RequestBody Stu stu) {
         log.info("添加学员：{}",stu);
@@ -83,6 +86,26 @@ public class StuController {
         stuService.violation(id,score);
 
         return Result.success();
+    }
+
+    // 获取所有学历信息
+    @GetMapping("/degree")
+    public Result getDegree() {
+        log.info("获取学历信息");
+
+        List<Degree> degree = stuService.getDegree();
+
+        return Result.success(degree);
+    }
+
+    // 获取所有班级信息
+    @GetMapping("/clazz")
+    public Result getClazz() {
+        log.info("获取班级信息");
+
+        List<Clazz> clazz = stuService.getClazz();
+
+        return Result.success(clazz);
     }
 
 }

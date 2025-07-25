@@ -9,7 +9,7 @@
     <!--新增员工经验-->
     <insert id="addEmpExpr">
         insert into emp_expr(emp_id,date,company,job) values
-        <foreach collection="exprList" item="expr" separator=", ">
+        <foreach collection="empExprList" item="expr" separator=", ">
             (#{expr.empId},#{expr.date},#{expr.company},#{expr.job})
         </foreach>
     </insert>

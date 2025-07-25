@@ -49,7 +49,7 @@ public class ClazzController {
     public Result deleteClazz(@PathVariable("id") Integer id) {
         log.info("删除班级的id为{}",id);
 
-        clazzService.deleteClazz(id);
+        //clazzService.deleteClazz(id);
 
         return Result.success();
     }
@@ -83,6 +83,16 @@ public class ClazzController {
         List<Clazz> clazzList = clazzService.getClazzList();
 
         return Result.success(clazzList);
+    }
+
+    // 查询所有学科
+    @GetMapping("/subject")
+    public Result getSubjectList(){
+        log.info("查询所有学科信息");
+
+        List<Clazz> subjectList = clazzService.getSubjectList();
+
+        return Result.success(subjectList);
     }
 
 

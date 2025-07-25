@@ -56,7 +56,7 @@ public class EmpServiceImpl implements EmpService {
         Integer affectedOnEmp =  empMapper.addEmp(emp);
 
         // 2.当员工工作经历不为空时，才添加工作经历
-        if (CollectionUtils.isEmpty(emp.getExprList())){
+        if (!CollectionUtils.isEmpty(emp.getEmpExprList())){
             _addEmpExpr(emp);
         }
 
@@ -67,12 +67,12 @@ public class EmpServiceImpl implements EmpService {
     @Transactional(rollbackFor = Exception.class)
     public void _addEmpExpr(Emp emp){
         // 1.批量为Expr对象的empId赋值（emp的id已用主键返回获取并封装）
-        for(EmpExpr expr : emp.getExprList()){
+        for(EmpExpr expr : emp.getEmpExprList()){
             expr.setEmpId(emp.getId());
         }
 
         // 2.判断
-        Integer affected = empExprMapper.addEmpExpr(emp.getExprList());
+        Integer affected = empExprMapper.addEmpExpr(emp.getEmpExprList());
 
         if (affected!=null && affected > 0){
             log.info("员工经验插入成功");
@@ -109,9 +109,9 @@ public class EmpServiceImpl implements EmpService {
         empMapper.update(emp);
 
         // 2.根据Id修改员工工作经历信息(先删，后加)
-        empMapper.deleteEmpByIds(Arrays.asList(emp.getId()));
+        empExprMapper.deleteEmpExprByIds(Arrays.asList(emp.getId()));
 
-        empExprMapper.addEmpExpr(emp.getExprList());
+        empExprMapper.addEmpExpr(emp.getEmpExprList());
     }
 
     // 统计员工岗位人数
@@ -139,15 +139,15 @@ public class EmpServiceImpl implements EmpService {
         Emp e = empMapper.selectByUsernameAndPassword(emp);
 
         if (e != null){
-            log.info("登陆成功,员工信息{}",emp);
+            log.info("登陆,员工信息{}",emp);
 
             // 生成Jwt令牌
             Map<String,Object> claims = new HashMap<>();
             claims.put("id",e.getId());
-            claims.put("username",e.getUsername());
+            claims.put("username",e.getUserName());
 
             String jwt = jwtUtils.createJWT(claims);
-            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),jwt);
+            return new LoginInfo(e.getId(),e.getUserName(),e.getEmpName(),jwt);
         }
         log.info("登陆失败");
         return null;

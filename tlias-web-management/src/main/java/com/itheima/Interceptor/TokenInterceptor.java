@@ -1,5 +1,6 @@
-package com.itheima.utils;
+package com.itheima.Interceptor;
 
+import com.itheima.utils.JWTUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +21,9 @@ public class TokenInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
 
         // 2. 判断是否为请求对象(已经在config中定以)
-//        if (requestURI.contains("/login")) {
-//            return true;
-//        }
+        if (requestURI.contains("/login")) {
+            return true;
+        }
 
         // 3. 判断token是否存在
         String token = request.getHeader("token");
@@ -36,7 +37,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         try{
             jwtUtils.parseJWT(token);
         }catch (Exception e){
-            log.info("令牌解析错误！");
+            log.info("令牌解析错误！",e);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); //相应 404
             return false;
         }

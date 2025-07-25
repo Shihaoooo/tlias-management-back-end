@@ -5,7 +5,7 @@
 <mapper namespace="com.itheima.mapper.ClazzMapper">
 
     <select id="getClazz" resultType="com.itheima.pojo.clazz.Clazz">
-        select clazz.id, clazz.name, room, begin_date, end_date, master_id, clazz.create_time, clazz.update_time, emp.name as master_name,
+        select clazz.id, clazz.name, room, begin_date, end_date, master_id,clazz.subject as subject, clazz.create_time, clazz.update_time, emp.name as master_name,
         <![CDATA[
         (case when current_date < clazz.begin_date then '未开课'
         when current_date > clazz.end_date then '已结课'
@@ -25,6 +25,16 @@
         select c.name as clazzList ,count(0) as dataList from clazz as c left join  student as s
         on c.id = s.clazz_id
         group by c.name ;
+    </select>
+
+    <!--查询回显-->
+    <select id="getClazzById" resultType="com.itheima.pojo.clazz.Clazz">
+        select clazz.id,clazz.name
+        as name,room,begin_date,end_date,master_id,emp.name as master_name, subjectMapping.subject_id as subject ,subjectMapping.subject_name,clazz.create_time,clazz.update_time
+        from clazz
+        left join emp on emp.id =clazz.master_id
+        left join subjectMapping on clazz.subject=subjectMapping.subject_id
+        where clazz.id = #{id};
     </select>
 
     <update id="updateClazz">

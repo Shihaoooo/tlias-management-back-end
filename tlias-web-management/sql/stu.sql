@@ -15,7 +15,8 @@ create table student(
                         violation_count tinyint unsigned default '0' not null comment '违纪次数',
                         violation_score tinyint unsigned default '0' not null comment '违纪扣分',
                         create_time  datetime  comment '创建时间',
-                        update_time  datetime  comment '修改时间'
+                        update_time  datetime  comment '修改时间',
+                        foreign key (degree) references degreeMapping(id)
 ) comment '学员表';
 
 
@@ -38,6 +39,9 @@ INSERT INTO student VALUES (1,'段誉','2022000001',1,'18800000001','11012000030
                            (17,'王语嫣','2022000017',2,'18800007601','110120000300200017',1,'北京市昌平区建材城西路17号',2,'2022-07-01',4,0,0,'2024-11-14 21:22:19','2024-11-14 21:22:19'),
                            (18,'郑成功','2024001101',1,'13309092345','110110110110110110',0,'北京市昌平区回龙观街道88号',5,'2021-07-01',3,2,7,'2024-11-15 16:26:18','2024-11-15 16:40:10');
 
+
+drop table student;
+
 select *
 from clazz;
 
@@ -53,3 +57,7 @@ select (case degree
      ,count(0) as value
 from student
 group by degree ;
+
+select s.id as id,s.name as name,gender,phone,id_card,is_college,address,degree,degree_name,graduation_date,clazz_id,c.name as clazz_name,violation_count,violation_score,s.update_time as update_time from student s
+    left join degreeMapping d on s.degree = d.id
+    left join clazz c on s.clazz_id=c.id;

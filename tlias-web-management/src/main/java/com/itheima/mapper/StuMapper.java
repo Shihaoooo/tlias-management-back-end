@@ -1,5 +1,7 @@
 package com.itheima.mapper;
 
+import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.stu.Degree;
 import com.itheima.pojo.stu.Stu;
 import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
@@ -8,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StuMapper {
@@ -36,4 +39,12 @@ public interface StuMapper {
 
     // 统计学生学历信息
     List<StuDegreeDataStatistics> getStuDegreeData();
+
+    // 获取学历信息
+    @Select("select * from degreeMapping")
+    List<Degree> getDegree();
+
+    // 获取班级信息
+    @Select("select id,name from clazz")
+    List<Clazz> getClazz();
 }

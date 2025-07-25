@@ -3,6 +3,8 @@ package com.itheima.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.mapper.StuMapper;
+import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.stu.Degree;
 import com.itheima.pojo.stu.Stu;
 import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
@@ -68,5 +70,17 @@ public class StuServiceImpl implements StuService{
     @Override
     public List<StuDegreeDataStatistics> getStuDegreeData() {
         return stuMapper.getStuDegreeData();
+    }
+
+    // 获取学历信息
+    @Override
+    public List<Degree> getDegree() {
+        return stuMapper.getDegree();
+    }
+
+    // 获取班级信息
+    @Override
+    public List<Clazz> getClazz() {
+        return stuMapper.getClazz();
     }
 }

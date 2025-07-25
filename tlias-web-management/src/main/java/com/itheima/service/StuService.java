@@ -1,5 +1,7 @@
 package com.itheima.service;
 
+import com.itheima.pojo.clazz.Clazz;
+import com.itheima.pojo.stu.Degree;
 import com.itheima.pojo.stu.Stu;
 import com.itheima.pojo.stu.StuDegreeDataStatistics;
 import com.itheima.pojo.stu.StuQueryParam;
@@ -29,4 +31,10 @@ public interface StuService {
 
     // 统计学生学历信息
     List<StuDegreeDataStatistics> getStuDegreeData();
+
+    // 获取学历信息
+    List<Degree> getDegree();
+
+    // 获取班级信息
+    List<Clazz> getClazz();
 }

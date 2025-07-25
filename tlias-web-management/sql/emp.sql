@@ -1,5 +1,6 @@
 select * from emp;
 
+drop table emp , emp_expr;
 create table emp_expr(
     id int unsigned primary key auto_increment comment 'ID,主键',
     emp_id int unsigned comment '员工ID',
@@ -21,13 +22,13 @@ create table emp(
                     job tinyint unsigned comment '职位, 1 班主任, 2 讲师, 3 学工主管, 4 教研主管, 5 咨询师',
                     salary int unsigned comment '薪资',
                     image varchar(255) comment '头像',
-                    entry_date date comment '入职日期',
+                    date date comment '入职日期',
                     dept_id int unsigned comment '部门ID',
                     create_time datetime comment '创建时间',
                     update_time datetime comment '修改时间'
 ) comment '员工表';
 
-insert into emp(username, password, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)
+insert into emp(username, password, name, gender, phone, job, salary, image, date, dept_id, create_time, update_time)
 values('li87','123456','陈桂花',2,'13609694172',5,7272,'#','2020-04-10',1,'2025-01-20 01:06:30.016600','2025-06-29 13:03:54.307653'),
       ('xiuying28','123456','郭淑华',2,'13484551825',5,13554,'#','2025-06-13',9,'2025-02-06 23:31:49.992595','2025-06-02 18:40:27.701779'),
       ('qxiang','123456','黄旭',2,'13302759407',4,15654,'#','2025-06-13',10,'2025-06-25 23:52:46.876652','2025-05-29 16:14:07.785882'),
@@ -694,3 +695,10 @@ select
 from emp
 group by gender
 order by gender DESC ;
+
+
+update emp set image='#';
+
+select e.name as empName,e.gender,e.image,e.job,e.date,d.name as deptName,e.update_time from emp e left join dept d on e.dept_id = d.id
+insert into emp(username, name, gender, phone, job, salary, image, date, dept_id, create_time, update_time)
+values ('tmp' ,'tmp1',1,'13302759407',3,1000,'#','2020-01-01',1,'2020-01-01',now())

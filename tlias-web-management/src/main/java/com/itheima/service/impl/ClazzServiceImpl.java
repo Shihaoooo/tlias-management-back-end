@@ -75,5 +75,11 @@ public class ClazzServiceImpl implements ClazzService {
         return new ClazzContainDataStatistics(clazzList,dataList);
     }
 
+    // 查询所有学生信息
+    @Override
+    public List<Clazz> getSubjectList() {
+        return clazzMapper.getSubjectList();
+    }
+
 
 }

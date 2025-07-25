@@ -81,6 +81,7 @@ public class EmpController {
     public Result deleteEmp(@RequestParam("ids") List<Integer> ids){
         // 1. 删除员工基本信息 和 员工经验信息
         empService.deleteEmpByIds(ids);
+        log.info("删除员工{}",ids);
 
         return Result.success();
 

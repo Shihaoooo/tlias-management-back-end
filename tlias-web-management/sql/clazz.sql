@@ -1,4 +1,4 @@
-# 班级表
+################################### 建表语句 ################################
 create table clazz(
                       id   int unsigned primary key auto_increment comment 'ID,主键',
                       name  varchar(30) not null unique  comment '班级名称',
@@ -11,6 +11,7 @@ create table clazz(
                       update_time datetime  comment '修改时间'
 )comment '班级表';
 
+################################### 数据插入 ################################
 INSERT INTO clazz VALUES (1,'JavaEE就业163期','212','2024-04-30','2024-06-29',10,1,'2024-06-01 17:08:23','2024-06-01 17:39:58'),
                          (2,'前端就业90期','210','2024-07-10','2024-01-20',3,2,'2024-06-01 17:45:12','2024-06-01 17:45:12'),
                          (3,'JavaEE就业165期','108','2024-06-15','2024-12-25',6,1,'2024-06-01 17:45:40','2024-06-01 17:45:40'),
@@ -18,19 +19,26 @@ INSERT INTO clazz VALUES (1,'JavaEE就业163期','212','2024-04-30','2024-06-29'
                          (5,'大数据就业58期','209','2024-08-01','2024-02-15',7,3,'2024-06-01 17:51:21','2024-06-01 17:51:21'),
                          (6,'JavaEE就业167期','325','2024-11-20','2024-05-10',36,1,'2024-11-15 11:35:46','2024-12-13 14:31:24');
 
-
+################################### 业务语句 ################################
+select * from clazz;
+drop table clazz;
 select clazz.id,clazz.name, room, begin_date, end_date, master_id, clazz.create_time, clazz.update_time,emp.name as master_name,
        (case when current_date < clazz.begin_date then '未开课'
            when current_date > clazz.end_date then '已节课'
            else '在读中' end) as 'status'
-from clazz left join emp
-    on clazz.master_id=emp.id
+from clazz left join emp on clazz.master_id=emp.id
 where clazz.name like concat('%','java','%') and begin_date > '2023-01-01';
-;
-
-
-select * from clazz;
 
 select c.name as clazzList ,count(0) as dataList from clazz as c left join  student as s
 on c.id = s.clazz_id
 group by c.name ;
+
+select clazz.id,clazz.name
+    as name,room,begin_date,end_date,master_id,emp.name as master_name, subjectMapping.subject_name as subject,clazz.create_time,clazz.update_time from clazz
+        left join emp on emp.id =clazz.master_id
+        left join subjectMapping on clazz.subject=subjectMapping.subject_id
+                                                                                                                    where clazz.id = 1;
+
+show tables;
+
+select * from subjectMapping sub;

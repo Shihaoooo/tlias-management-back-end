@@ -28,4 +28,5 @@ public class Stu {
     private LocalDateTime updateTime; //修改时间
 
     private String clazzName;//班级名称
+    private String degreeName;
 }

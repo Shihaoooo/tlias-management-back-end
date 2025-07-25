@@ -26,7 +26,7 @@ public interface EmpMapper {
     // 添加员工
     @Options(useGeneratedKeys = true,keyProperty = "id")
     @Insert("insert into emp(username, name, gender, phone, job, salary, image, date, dept_id, create_time, update_time) "
-    +"value(#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{date},#{deptId},current_date,current_date)")
+    +"value(#{userName},#{empName},#{gender},#{phone},#{job},#{salary},#{image},#{date},#{deptId},current_date,current_date)")
     Integer addEmp(Emp emp);
     /*
      * 由于在添加员工的emp_id时，emp_id的值始终为空(因为id是先插入员工表后自动生成的id)
@@ -41,6 +41,7 @@ public interface EmpMapper {
     // 修改员工
     void update(Emp emp);
 
+    // 统计员工岗位信息
     @MapKey("pos")
     List<Map<String,Object>> countEmpJobData();
 
@@ -48,6 +49,6 @@ public interface EmpMapper {
     List<Map<Object, Object>> getEmpGenderData();
 
     // 根据用户名和密码查询用户
-    @Select("select id,username,name from emp where username = #{username} and password = #{password}")
+    @Select("select id,username as userName,name from emp where username = #{userName} and password = #{password}")
     Emp selectByUsernameAndPassword(Emp emp);
 }

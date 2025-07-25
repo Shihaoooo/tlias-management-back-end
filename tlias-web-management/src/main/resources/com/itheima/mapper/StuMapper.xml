@@ -6,11 +6,15 @@
 
     <!--分页查询学生信息-->
     <select id="getStu" resultType="com.itheima.pojo.stu.Stu">
-        select * from student
+        select s.id as id,s.name as name,gender,phone,id_card,is_college,address,degree,degree_name,s.no as no,
+        graduation_date,clazz_id,c.name as clazz_name,violation_count,violation_score,s.update_time as update_time ,
+        s.create_time as create_time from student s
+        left join degreeMapping d on s.degree = d.id
+        left join clazz c on s.clazz_id=c.id
         <where>
-            <if test="name != null and name != ''">and name like concat('%',#{name},'%')</if>
-            <if test="degree != null">and degree = #{degree}</if>
-            <if test="clazzId != null">and clazz_id = #{clazzId}</if>
+            <if test="name != null and name != ''">and s.name like concat('%',#{name},'%')</if>
+            <if test="degree != null">and s.degree = #{degree}</if>
+            <if test="clazzId != null">and s.clazz_id = #{clazzId}</if>
         </where>
     </select>
 

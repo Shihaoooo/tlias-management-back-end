@@ -12,8 +12,6 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
-
-
 # 参数配置化
 aliyun:
   oss:
@@ -22,5 +20,5 @@ aliyun:
     region: cn-beijing
 
 jwt:
-  secret: 5ZGo6K+X55qT
+  secret: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8
   expire: 3600000

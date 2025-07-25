@@ -29,4 +29,7 @@ public interface ClazzService {
 
     // 统计各班级人数
     ClazzContainDataStatistics getClazzContainData();
+
+    // 查询所有学科信息
+    List<Clazz> getSubjectList();
 }
